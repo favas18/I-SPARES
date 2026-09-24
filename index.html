@@ -1,0 +1,2963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>I SPARES | Apple Spare Parts & Accessories</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    background:#f5f5f7;
+    color:#111;
+}
+
+header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid #ddd;
+    padding:14px 5%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:900;
+    letter-spacing:3px;
+}
+
+.header-right{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+.search{
+    width:230px;
+    padding:10px 15px;
+    border:1px solid #ddd;
+    border-radius:25px;
+    outline:none;
+}
+
+.cart-button{
+    border:none;
+    background:#000;
+    color:#fff;
+    padding:11px 18px;
+    border-radius:25px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.hero{
+    background:#fff;
+    text-align:center;
+    padding:75px 20px;
+}
+
+.hero small{
+    color:#777;
+    letter-spacing:3px;
+}
+
+.hero h1{
+    font-size:clamp(55px,11vw,100px);
+    letter-spacing:-6px;
+    margin:12px 0;
+}
+
+.hero p{
+    max-width:650px;
+    margin:auto;
+    color:#666;
+    line-height:1.7;
+}
+
+.hero a{
+    display:inline-block;
+    margin-top:25px;
+    padding:13px 25px;
+    background:#000;
+    color:#fff;
+    border-radius:25px;
+    text-decoration:none;
+}
+
+section{
+    padding:55px 5%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.section-title h2{
+    font-size:36px;
+}
+
+.section-title p{
+    color:#777;
+    margin-top:8px;
+}
+
+.category-grid{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(160px,1fr));
+    gap:15px;
+}
+
+.category{
+    background:#fff;
+    border:1px solid #e5e5e5;
+    border-radius:20px;
+    padding:28px 15px;
+    text-align:center;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.category:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 30px #0001;
+}
+
+.category-icon{
+    font-size:38px;
+    margin-bottom:12px;
+}
+
+.category h3{
+    font-size:15px;
+}
+
+#catalogue{
+    display:none;
+    background:#f5f5f7;
+}
+
+.back-button{
+    border:none;
+    background:#fff;
+    padding:10px 17px;
+    border-radius:20px;
+    cursor:pointer;
+    margin-bottom:25px;
+}
+
+.options{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(170px,1fr));
+    gap:14px;
+}
+
+.option{
+    background:#fff;
+    padding:22px;
+    border:1px solid #ddd;
+    border-radius:17px;
+    text-align:center;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.option:hover{
+    box-shadow:0 8px 20px #0001;
+    transform:translateY(-2px);
+}
+
+.option small{
+    display:block;
+    color:#777;
+    margin-top:7px;
+    font-weight:normal;
+}
+
+.products{
+    max-width:1200px;
+    margin:25px auto 0;
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fill,minmax(220px,1fr));
+    gap:16px;
+}
+
+.product{
+    background:#fff;
+    border:1px solid #e5e5e5;
+    border-radius:18px;
+    overflow:hidden;
+}
+
+.product-image{
+    height:175px;
+    background:#eee;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:55px;
+    color:#999;
+}
+
+.product-info{
+    padding:16px;
+}
+
+.product-info h3{
+    font-size:16px;
+    margin-bottom:7px;
+}
+
+.product-details{
+    color:#777;
+    font-size:13px;
+    line-height:1.6;
+}
+
+.price{
+    font-size:20px;
+    font-weight:800;
+    margin:12px 0 5px;
+}
+
+.stock{
+    color:#188044;
+    font-size:13px;
+    margin-bottom:12px;
+}
+
+.add-button{
+    width:100%;
+    border:none;
+    background:#000;
+    color:#fff;
+    padding:11px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.add-button:disabled{
+    background:#ccc;
+}
+
+.about{
+    background:#fff;
+    text-align:center;
+}
+
+.about p{
+    max-width:750px;
+    margin:auto;
+    color:#666;
+    line-height:1.8;
+}
+
+footer{
+    background:#000;
+    color:#777;
+    text-align:center;
+    padding:25px;
+}
+
+/* CART */
+
+.overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:#0008;
+    z-index:200;
+}
+
+.overlay.active{
+    display:block;
+}
+
+.cart{
+    position:fixed;
+    z-index:300;
+    top:0;
+    right:-430px;
+    width:410px;
+    max-width:92%;
+    height:100%;
+    background:#fff;
+    padding:24px;
+    overflow:auto;
+    transition:.3s;
+}
+
+.cart.active{
+    right:0;
+}
+
+.cart-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.close{
+    border:none;
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+.cart-item{
+    padding:15px 0;
+    border-bottom:1px solid #eee;
+}
+
+.cart-item b{
+    display:block;
+}
+
+.quantity{
+    display:flex;
+    gap:9px;
+    align-items:center;
+    margin-top:9px;
+}
+
+.quantity button{
+    width:28px;
+    height:28px;
+    border:none;
+    border-radius:7px;
+    cursor:pointer;
+}
+
+.remove{
+    border:none;
+    background:#eee;
+    padding:6px 10px;
+    border-radius:7px;
+    margin-top:7px;
+    cursor:pointer;
+}
+
+.total{
+    font-size:22px;
+    font-weight:bold;
+    padding:20px 0;
+}
+
+.checkout{
+    width:100%;
+    border:none;
+    background:#25d366;
+    color:white;
+    padding:14px;
+    border-radius:11px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* CHECKOUT */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:500;
+    background:#0008;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.modal.active{
+    display:flex;
+}
+
+.modal-box{
+    width:500px;
+    max-width:100%;
+    max-height:90vh;
+    overflow:auto;
+    background:#fff;
+    border-radius:20px;
+    padding:25px;
+}
+
+.field{
+    margin-bottom:14px;
+}
+
+.field label{
+    display:block;
+    font-size:13px;
+    color:#555;
+    margin-bottom:5px;
+}
+
+.field input,
+.field textarea,
+.field select{
+    width:100%;
+    padding:11px;
+    border:1px solid #ddd;
+    border-radius:9px;
+    outline:none;
+}
+
+.field textarea{
+    min-height:80px;
+}
+
+.place-order{
+    width:100%;
+    border:none;
+    background:#000;
+    color:#fff;
+    padding:13px;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.cancel{
+    width:100%;
+    border:none;
+    background:#eee;
+    padding:11px;
+    border-radius:10px;
+    margin-top:8px;
+    cursor:pointer;
+}
+
+/* MOBILE */
+
+@media(max-width:650px){
+
+    header{
+        padding:12px 15px;
+    }
+
+    .search{
+        display:none;
+    }
+
+    .logo{
+        font-size:19px;
+    }
+
+    .hero{
+        padding:60px 18px;
+    }
+
+    .hero h1{
+        letter-spacing:-4px;
+    }
+
+    section{
+        padding:45px 15px;
+    }
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+        gap:9px;
+    }
+
+    .product-image{
+        height:130px;
+    }
+
+    .product-info{
+        padding:12px;
+    }
+
+    .product-info h3{
+        font-size:14px;
+    }
+
+    .price{
+        font-size:17px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+I SPARES
+</div>
+
+<div class="header-right">
+
+<input
+class="search"
+id="search"
+placeholder="Search product..."
+oninput="searchProducts()"
+>
+
+<button
+class="cart-button"
+onclick="openCart()"
+>
+🛒 Cart <span id="cartCount">0</span>
+</button>
+
+</div>
+
+</header>
+
+
+<div class="hero">
+
+<small>
+APPLE SPARE PARTS & ACCESSORIES
+</small>
+
+<h1>
+I SPARES
+</h1>
+
+<p>
+Apple spare parts and accessories for mobile repair shops,
+technicians and resellers.
+</p>
+
+<a href="#categories">
+Browse Products
+</a>
+
+</div>
+
+
+<section id="categories">
+
+<div class="section-title">
+
+<h2>
+Shop by Category
+</h2>
+
+<p>
+Choose what you are looking for
+</p>
+
+</div>
+
+<div
+class="category-grid"
+id="categoryGrid">
+</div>
+
+</section>
+
+
+<section id="catalogue">
+
+<button
+class="back-button"
+onclick="showCategories()"
+>
+← All Categories
+</button>
+
+<div class="section-title">
+
+<h2 id="categoryTitle"></h2>
+
+<p id="categoryDescription"></p>
+
+</div>
+
+<div
+class="options"
+id="options">
+</div>
+
+<div
+class="products"
+id="products">
+</div>
+
+</section>
+
+
+<section class="about">
+
+<div class="section-title">
+
+<h2>
+About I SPARES
+</h2>
+
+</div>
+
+<p>
+I SPARES provides Apple spare parts and accessories
+for mobile repair shops and technicians.
+Product photos, descriptions, prices and stock can
+be managed later through the admin system.
+</p>
+
+</section>
+
+
+<footer>
+
+© 2026 I SPARES — Apple Spare Parts & Accessories
+
+</footer>
+
+
+<div
+class="overlay"
+id="overlay"
+onclick="closeCart()">
+</div>
+
+
+<div
+class="cart"
+id="cart">
+
+<div class="cart-header">
+
+<h2>
+Your Cart
+</h2>
+
+<button
+class="close"
+onclick="closeCart()">
+✕
+</button>
+
+</div>
+
+<div id="cartItems">
+</div>
+
+<div class="total">
+
+Total: ₹<span id="cartTotal">0</span>
+
+</div>
+
+<button
+class="checkout"
+onclick="openCheckout()"
+>
+Continue to Checkout
+</button>
+
+</div>
+
+
+<div
+class="modal"
+id="checkoutModal">
+
+<div class="modal-box">
+
+<h2>
+Delivery Details
+</h2>
+
+<br>
+
+<div class="field">
+
+<label>Name</label>
+
+<input id="customerName">
+
+</div>
+
+
+<div class="field">
+
+<label>Phone</label>
+
+<input id="customerPhone">
+
+</div>
+
+
+<div class="field">
+
+<label>Address</label>
+
+<textarea id="customerAddress"></textarea>
+
+</div>
+
+
+<div class="field">
+
+<label>City</label>
+
+<input id="customerCity">
+
+</div>
+
+
+<div class="field">
+
+<label>State</label>
+
+<input id="customerState">
+
+</div>
+
+
+<div class="field">
+
+<label>PIN Code</label>
+
+<input id="customerPin">
+
+</div>
+
+
+<div class="field">
+
+<label>Payment Method</label>
+
+<select id="payment">
+
+<option>
+Cash on Delivery
+</option>
+
+<option>
+UPI
+</option>
+
+<option>
+Online Payment
+</option>
+
+<option>
+WhatsApp Order
+</option>
+
+</select>
+
+</div>
+
+
+<button
+class="place-order"
+onclick="placeOrder()"
+>
+Place Order
+</button>
+
+<button
+class="cancel"
+onclick="closeCheckout()"
+>
+Cancel
+</button>
+
+</div>
+
+</div>
+
+
+<!-- SECTION 2 WILL BE PASTED BELOW THIS LINE -->
+
+<script>
+/* =========================================================
+   I SPARES PRODUCT DATABASE
+   ========================================================= */
+
+let products = [];
+let productID = 1;
+
+
+/* =========================================================
+   IPHONE MODELS
+   ========================================================= */
+
+const iphoneModels = [
+
+"iPhone 8",
+"iPhone 8 Plus",
+
+"iPhone X",
+"iPhone XR",
+"iPhone XS",
+"iPhone XS Max",
+
+"iPhone 11",
+"iPhone 11 Pro",
+"iPhone 11 Pro Max",
+
+"iPhone 12 mini",
+"iPhone 12",
+"iPhone 12 Pro",
+"iPhone 12 Pro Max",
+
+"iPhone 13 mini",
+"iPhone 13",
+"iPhone 13 Pro",
+"iPhone 13 Pro Max",
+
+"iPhone 14",
+"iPhone 14 Plus",
+"iPhone 14 Pro",
+"iPhone 14 Pro Max",
+
+"iPhone 15",
+"iPhone 15 Plus",
+"iPhone 15 Pro",
+"iPhone 15 Pro Max",
+
+"iPhone 16",
+"iPhone 16 Plus",
+"iPhone 16 Pro",
+"iPhone 16 Pro Max",
+
+"iPhone 17",
+"iPhone 17 Pro",
+"iPhone 17 Pro Max"
+
+];
+
+
+/* =========================================================
+   ORIGINAL IPHONE COLOURS
+   USED FOR BACK GLASS + HOUSING
+   ========================================================= */
+
+const iphoneColours = {
+
+"iPhone 8":[
+"Silver",
+"Space Gray",
+"Gold",
+"Product Red"
+],
+
+"iPhone 8 Plus":[
+"Silver",
+"Space Gray",
+"Gold",
+"Product Red"
+],
+
+"iPhone X":[
+"Silver",
+"Space Gray"
+],
+
+"iPhone XR":[
+"Black",
+"White",
+"Yellow",
+"Coral",
+"Blue",
+"Product Red"
+],
+
+"iPhone XS":[
+"Silver",
+"Space Gray",
+"Gold"
+],
+
+"iPhone XS Max":[
+"Silver",
+"Space Gray",
+"Gold"
+],
+
+"iPhone 11":[
+"Black",
+"White",
+"Green",
+"Yellow",
+"Purple",
+"Product Red"
+],
+
+"iPhone 11 Pro":[
+"Space Gray",
+"Silver",
+"Gold",
+"Midnight Green"
+],
+
+"iPhone 11 Pro Max":[
+"Space Gray",
+"Silver",
+"Gold",
+"Midnight Green"
+],
+
+"iPhone 12 mini":[
+"Black",
+"White",
+"Product Red",
+"Green",
+"Blue",
+"Purple"
+],
+
+"iPhone 12":[
+"Black",
+"White",
+"Product Red",
+"Green",
+"Blue",
+"Purple"
+],
+
+"iPhone 12 Pro":[
+"Pacific Blue",
+"Gold",
+"Graphite",
+"Silver"
+],
+
+"iPhone 12 Pro Max":[
+"Pacific Blue",
+"Gold",
+"Graphite",
+"Silver"
+],
+
+"iPhone 13 mini":[
+"Green",
+"Pink",
+"Blue",
+"Midnight",
+"Starlight",
+"Product Red"
+],
+
+"iPhone 13":[
+"Green",
+"Pink",
+"Blue",
+"Midnight",
+"Starlight",
+"Product Red"
+],
+
+"iPhone 13 Pro":[
+"Graphite",
+"Gold",
+"Silver",
+"Sierra Blue",
+"Alpine Green"
+],
+
+"iPhone 13 Pro Max":[
+"Graphite",
+"Gold",
+"Silver",
+"Sierra Blue",
+"Alpine Green"
+],
+
+"iPhone 14":[
+"Midnight",
+"Starlight",
+"Product Red",
+"Blue",
+"Purple",
+"Yellow"
+],
+
+"iPhone 14 Plus":[
+"Midnight",
+"Starlight",
+"Product Red",
+"Blue",
+"Purple",
+"Yellow"
+],
+
+"iPhone 14 Pro":[
+"Space Black",
+"Silver",
+"Gold",
+"Deep Purple"
+],
+
+"iPhone 14 Pro Max":[
+"Space Black",
+"Silver",
+"Gold",
+"Deep Purple"
+],
+
+"iPhone 15":[
+"Black",
+"Blue",
+"Green",
+"Yellow",
+"Pink"
+],
+
+"iPhone 15 Plus":[
+"Black",
+"Blue",
+"Green",
+"Yellow",
+"Pink"
+],
+
+"iPhone 15 Pro":[
+"Black Titanium",
+"White Titanium",
+"Blue Titanium",
+"Natural Titanium"
+],
+
+"iPhone 15 Pro Max":[
+"Black Titanium",
+"White Titanium",
+"Blue Titanium",
+"Natural Titanium"
+],
+
+"iPhone 16":[
+"Black",
+"White",
+"Pink",
+"Teal",
+"Ultramarine"
+],
+
+"iPhone 16 Plus":[
+"Black",
+"White",
+"Pink",
+"Teal",
+"Ultramarine"
+],
+
+"iPhone 16 Pro":[
+"Black Titanium",
+"Natural Titanium",
+"White Titanium",
+"Desert Titanium"
+],
+
+"iPhone 16 Pro Max":[
+"Black Titanium",
+"Natural Titanium",
+"White Titanium",
+"Desert Titanium"
+],
+
+"iPhone 17":[
+"Black",
+"White",
+"Lavender",
+"Mint",
+"Blue"
+],
+
+"iPhone 17 Pro":[
+"Cosmic Orange",
+"Deep Blue",
+"Silver"
+],
+
+"iPhone 17 Pro Max":[
+"Cosmic Orange",
+"Deep Blue",
+"Silver"
+]
+
+};
+
+
+/* =========================================================
+   BATTERY MODELS
+   ========================================================= */
+
+const batteryModels = [
+
+"iPhone 7",
+"iPhone 7 Plus",
+
+"iPhone 8",
+"iPhone 8 Plus",
+
+"iPhone X",
+"iPhone XS",
+"iPhone XS Max",
+"iPhone XR",
+
+"iPhone 11",
+"iPhone 11 Pro",
+"iPhone 11 Pro Max",
+
+"iPhone 12 mini",
+"iPhone 12",
+"iPhone 12 Pro",
+"iPhone 12 Pro Max",
+
+"iPhone 13 mini",
+"iPhone 13",
+"iPhone 13 Pro",
+"iPhone 13 Pro Max",
+
+"iPhone 14",
+"iPhone 14 Plus",
+"iPhone 14 Pro",
+"iPhone 14 Pro Max",
+
+"iPhone 15",
+"iPhone 15 Plus",
+"iPhone 15 Pro",
+"iPhone 15 Pro Max",
+
+"iPhone 16",
+"iPhone 16 Plus",
+"iPhone 16 Pro",
+"iPhone 16 Pro Max"
+
+];
+
+
+/* =========================================================
+   CALIBRATION BATTERY MODELS
+   ========================================================= */
+
+const calibrationModels = [
+
+"iPhone 12 mini",
+"iPhone 12",
+"iPhone 12 Pro",
+"iPhone 12 Pro Max",
+
+"iPhone 13 mini",
+"iPhone 13",
+"iPhone 13 Pro",
+"iPhone 13 Pro Max",
+
+"iPhone 14",
+"iPhone 14 Plus",
+"iPhone 14 Pro",
+"iPhone 14 Pro Max",
+
+"iPhone 15",
+"iPhone 15 Plus",
+"iPhone 15 Pro",
+"iPhone 15 Pro Max"
+
+];
+
+
+/* =========================================================
+   IPAD MODELS
+   ========================================================= */
+
+const ipadModels = [
+
+"iPad 5th Gen",
+"iPad 6th Gen",
+"iPad 7th Gen",
+"iPad 8th Gen",
+"iPad 9th Gen",
+"iPad 10th Gen",
+"iPad (A16)",
+
+"iPad mini 1",
+"iPad mini 2",
+"iPad mini 3",
+"iPad mini 4",
+"iPad mini 5",
+"iPad mini 6",
+
+"iPad Air 1",
+"iPad Air 2",
+"iPad Air 3",
+"iPad Air 4",
+"iPad Air 5",
+
+"iPad Pro 9.7-inch",
+"iPad Pro 10.5-inch",
+"iPad Pro 11-inch",
+"iPad Pro 12.9-inch"
+
+];
+
+
+/* =========================================================
+   IPAD TOUCH COLOURS
+   ========================================================= */
+
+const ipadTouchColours = {};
+
+ipadModels.forEach(model => {
+
+    ipadTouchColours[model] = [
+        "Black",
+        "White"
+    ];
+
+});
+
+
+/* =========================================================
+   APPLE WATCH MODELS
+   ========================================================= */
+
+const watchModels = {
+
+"Series 1":[
+"38mm",
+"42mm"
+],
+
+"Series 2":[
+"38mm",
+"42mm"
+],
+
+"Series 3":[
+"38mm",
+"42mm"
+],
+
+"Series 4":[
+"40mm",
+"44mm"
+],
+
+"Series 5":[
+"40mm",
+"44mm"
+],
+
+"Series 6":[
+"40mm",
+"44mm"
+],
+
+"Series 7":[
+"41mm",
+"45mm"
+],
+
+"Series 8":[
+"41mm",
+"45mm"
+],
+
+"Series 9":[
+"41mm",
+"45mm"
+],
+
+"Series 10":[
+"42mm",
+"46mm"
+],
+
+"Series 11":[
+"42mm",
+"46mm"
+],
+
+"Series 12":[
+"42mm",
+"46mm"
+],
+
+"Ultra":[
+"49mm"
+],
+
+"Ultra 2":[
+"49mm"
+],
+
+"Ultra 3":[
+"49mm"
+]
+
+};
+
+
+/* =========================================================
+   PRODUCT CREATOR
+   ========================================================= */
+
+function addProduct(
+    category,
+    name,
+    model,
+    quality="",
+    colour="",
+    price=999,
+    stock=2
+){
+
+    products.push({
+
+        id:productID++,
+
+        category:category,
+
+        name:name,
+
+        model:model,
+
+        quality:quality,
+
+        colour:colour,
+
+        price:price,
+
+        stock:stock,
+
+        description:
+        "Product description can be added later.",
+
+        image:""
+
+    });
+
+}
+
+
+/* =========================================================
+   DISPLAY PRODUCTS
+   ========================================================= */
+
+const displayQualities = {
+
+"Removed":3200,
+
+"Glass Change":1800,
+
+"One-to-One":2500,
+
+"DD":2200
+
+};
+
+
+Object.entries(displayQualities).forEach(
+([quality,price]) => {
+
+    iphoneModels.forEach(model => {
+
+        addProduct(
+
+            "Displays",
+
+            `${model} Display — ${quality}`,
+
+            model,
+
+            quality,
+
+            "",
+
+            price,
+
+            2
+
+        );
+
+    });
+
+});
+
+
+/* =========================================================
+   BATTERIES
+   ========================================================= */
+
+batteryModels.forEach(model => {
+
+    if(calibrationModels.includes(model)){
+
+        addProduct(
+            "Batteries",
+            `${model} Battery — Used`,
+            model,
+            "Used",
+            "",
+            899,
+            2
+        );
+
+        addProduct(
+            "Batteries",
+            `${model} Battery — Genuine`,
+            model,
+            "Genuine",
+            "",
+            1499,
+            2
+        );
+
+    }
+
+    else{
+
+        addProduct(
+            "Batteries",
+            `${model} Battery`,
+            model,
+            "Standard",
+            "",
+            799,
+            2
+        );
+
+    }
+
+});
+
+
+/* =========================================================
+   BACK GLASS + HOUSING
+   MODEL-SPECIFIC COLOURS
+   ========================================================= */
+
+iphoneModels.forEach(model => {
+
+    const colours =
+    iphoneColours[model] || [];
+
+    colours.forEach(colour => {
+
+        addProduct(
+
+            "Back Glass",
+
+            `${model} Back Glass A++`,
+
+            model,
+
+            "A++",
+
+            colour,
+
+            699,
+
+            2
+
+        );
+
+
+        addProduct(
+
+            "Housing",
+
+            `${model} Housing A++`,
+
+            model,
+
+            "A++",
+
+            colour,
+
+            1299,
+
+            2
+
+        );
+
+    });
+
+});
+
+
+/* =========================================================
+   IPHONE SMALL PARTS
+   ========================================================= */
+
+iphoneModels.forEach(model => {
+
+    addProduct(
+        "Ringer",
+        `${model} Ringer`,
+        model,
+        "Standard",
+        "",
+        299,
+        2
+    );
+
+
+    addProduct(
+        "Earpiece",
+        `${model} Earpiece`,
+        model,
+        "Standard",
+        "",
+        249,
+        2
+    );
+
+
+    addProduct(
+        "Charging Strip",
+        `${model} Charging Strip`,
+        model,
+        "Standard",
+        "",
+        399,
+        2
+    );
+
+
+    addProduct(
+        "iPhone OCA",
+        `${model} OCA Glass`,
+        model,
+        "OCA",
+        "",
+        199,
+        2
+    );
+
+});
+
+
+/* =========================================================
+   IPAD TOUCH
+   BLACK + WHITE SEPARATE PRODUCTS
+   ========================================================= */
+
+ipadModels.forEach(model => {
+
+    ipadTouchColours[model].forEach(colour => {
+
+        addProduct(
+
+            "iPad Touch",
+
+            `${model} Touch — ${colour}`,
+
+            model,
+
+            "Touch",
+
+            colour,
+
+            999,
+
+            2
+
+        );
+
+    });
+
+});
+
+
+/* =========================================================
+   APPLE WATCH TOUCH + OCA
+   ========================================================= */
+
+Object.entries(watchModels).forEach(
+([series,sizes]) => {
+
+    sizes.forEach(size => {
+
+        addProduct(
+
+            "Watch Touch",
+
+            `${series} ${size} Touch`,
+
+            `${series} ${size}`,
+
+            "Touch",
+
+            "",
+
+            899,
+
+            2
+
+        );
+
+
+        addProduct(
+
+            "Watch OCA",
+
+            `${series} ${size} OCA Glass`,
+
+            `${series} ${size}`,
+
+            "OCA",
+
+            "",
+
+            299,
+
+            2
+
+        );
+
+    });
+
+});
+
+
+/* =========================================================
+   ACCESSORIES
+   ========================================================= */
+
+const accessories = [
+
+[
+"Apple Accessories",
+"Apple 20W Adapter",
+"20W",
+1299
+],
+
+[
+"Apple Accessories",
+"Apple 30W Adapter",
+"30W",
+1999
+],
+
+[
+"Apple Accessories",
+"Apple Cable — USB-C to USB-C",
+"C to C",
+699
+],
+
+[
+"Apple Accessories",
+"Apple Cable — USB-C to Lightning",
+"C to Lightning",
+699
+],
+
+[
+"Samsung Accessories",
+"Samsung 25W Adapter",
+"25W",
+999
+],
+
+[
+"Samsung Accessories",
+"Samsung 45W Adapter",
+"45W",
+1799
+],
+
+[
+"Samsung Accessories",
+"Samsung 60W Adapter",
+"60W",
+2299
+],
+
+[
+"Samsung Accessories",
+"Samsung 65W Adapter",
+"65W",
+2499
+],
+
+[
+"Samsung Accessories",
+"Samsung Cable",
+"Cable",
+499
+],
+
+[
+"Falcon 530",
+"Falcon 530",
+"Falcon 530",
+999
+]
+
+];
+
+
+accessories.forEach(item => {
+
+    addProduct(
+
+        item[0],
+        item[1],
+        item[2],
+        "Standard",
+        "",
+        item[3],
+        2
+
+    );
+
+});
+
+
+/* =========================================================
+   WEBSITE CATEGORIES
+   ========================================================= */
+
+const categories = [
+
+["Displays","📱"],
+
+["Batteries","🔋"],
+
+["Back Glass","🔲"],
+
+["Housing","🏠"],
+
+["Ringer","🔊"],
+
+["Earpiece","🔈"],
+
+["Charging Strip","⚡"],
+
+["iPad Touch","📲"],
+
+["Watch Touch","⌚"],
+
+["Watch OCA","🪟"],
+
+["iPhone OCA","🪟"],
+
+["Apple Accessories","🍎"],
+
+["Samsung Accessories","🔌"],
+
+["Falcon 530","🛠️"]
+
+];
+
+
+const categoryGrid =
+document.getElementById("categoryGrid");
+
+
+categories.forEach(
+([name,icon]) => {
+
+    categoryGrid.innerHTML += `
+
+        <div
+        class="category"
+        onclick="openCategory('${name}')">
+
+            <div class="category-icon">
+                ${icon}
+            </div>
+
+            <h3>
+                ${name}
+            </h3>
+
+        </div>
+
+    `;
+
+});
+
+
+let currentCategory = "";
+  /* =========================================================
+   OPEN CATEGORY
+   ========================================================= */
+
+function openCategory(category){
+
+    currentCategory = category;
+
+    document.getElementById("catalogue").style.display =
+    "block";
+
+    document.getElementById("categoryTitle").innerText =
+    category;
+
+    document.getElementById("categoryDescription").innerText =
+    "Choose a product option";
+
+    document.getElementById("options").innerHTML = "";
+
+    document.getElementById("products").innerHTML = "";
+
+
+    /* DISPLAY QUALITY */
+
+    if(category === "Displays"){
+
+        createOptions(
+            [
+                "Removed",
+                "Glass Change",
+                "One-to-One",
+                "DD"
+            ],
+            "quality"
+        );
+
+    }
+
+
+    /* BATTERY TYPE */
+
+    else if(category === "Batteries"){
+
+        createOptions(
+            [
+                "Used",
+                "Genuine"
+            ],
+            "quality"
+        );
+
+    }
+
+
+    /* IPHONE MODEL BASED PARTS */
+
+    else if(
+
+        category === "Back Glass" ||
+        category === "Housing" ||
+        category === "Ringer" ||
+        category === "Earpiece" ||
+        category === "Charging Strip" ||
+        category === "iPhone OCA"
+
+    ){
+
+        createOptions(
+            iphoneModels,
+            "model"
+        );
+
+    }
+
+
+    /* IPAD TOUCH */
+
+    else if(category === "iPad Touch"){
+
+        createOptions(
+            ipadModels,
+            "model"
+        );
+
+    }
+
+
+    /* APPLE WATCH */
+
+    else if(
+
+        category === "Watch Touch" ||
+        category === "Watch OCA"
+
+    ){
+
+        createOptions(
+            Object.keys(watchModels),
+            "watch"
+        );
+
+    }
+
+
+    /* ACCESSORIES / FALCON */
+
+    else{
+
+        showProducts(
+
+            products.filter(
+                product =>
+                product.category === category
+            )
+
+        );
+
+    }
+
+
+    document.getElementById("catalogue")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================================
+   CREATE OPTIONS
+   ========================================================= */
+
+function createOptions(items,type){
+
+    const container =
+    document.getElementById("options");
+
+    container.innerHTML = "";
+
+
+    items.forEach(item => {
+
+        const div =
+        document.createElement("div");
+
+        div.className = "option";
+
+
+        div.innerHTML = `
+
+            ${item}
+
+            <small>
+
+            ${
+                type === "quality"
+                ? "View all models"
+                :
+                type === "watch"
+                ? "Choose size"
+                :
+                "View products"
+            }
+
+            </small>
+
+        `;
+
+
+        div.onclick = function(){
+
+            selectOption(
+                item,
+                type
+            );
+
+        };
+
+
+        container.appendChild(div);
+
+    });
+
+}
+
+
+/* =========================================================
+   SELECT OPTION
+   ========================================================= */
+
+function selectOption(value,type){
+
+
+    /* DISPLAY QUALITY */
+
+    if(
+
+        currentCategory === "Displays" &&
+        type === "quality"
+
+    ){
+
+        showProducts(
+
+            products.filter(product =>
+
+                product.category === "Displays" &&
+
+                product.quality === value
+
+            )
+
+        );
+
+        return;
+
+    }
+
+
+    /* BATTERY TYPE */
+
+    if(
+
+        currentCategory === "Batteries" &&
+        type === "quality"
+
+    ){
+
+        showProducts(
+
+            products.filter(product =>
+
+                product.category === "Batteries" &&
+
+                product.quality === value
+
+            )
+
+        );
+
+        return;
+
+    }
+
+
+    /* MODEL BASED PRODUCTS */
+
+    if(type === "model"){
+
+
+        /* BACK GLASS */
+
+        if(
+            currentCategory === "Back Glass" ||
+            currentCategory === "Housing" ||
+            currentCategory === "iPad Touch"
+        ){
+
+            showColourOptions(value);
+
+        }
+
+
+        else{
+
+            showProducts(
+
+                products.filter(product =>
+
+                    product.category ===
+                    currentCategory &&
+
+                    product.model === value
+
+                )
+
+            );
+
+        }
+
+        return;
+
+    }
+
+
+    /* WATCH */
+
+    if(type === "watch"){
+
+        const container =
+        document.getElementById("options");
+
+        container.innerHTML = "";
+
+
+        watchModels[value].forEach(size => {
+
+            const div =
+            document.createElement("div");
+
+            div.className = "option";
+
+
+            div.innerHTML = `
+
+                ${value} ${size}
+
+                <small>
+                View products
+                </small>
+
+            `;
+
+
+            div.onclick = function(){
+
+                showProducts(
+
+                    products.filter(product =>
+
+                        product.category ===
+                        currentCategory &&
+
+                        product.model ===
+                        `${value} ${size}`
+
+                    )
+
+                );
+
+            };
+
+
+            container.appendChild(div);
+
+        });
+
+    }
+
+}
+
+
+/* =========================================================
+   COLOUR SELECTION
+   ========================================================= */
+
+function showColourOptions(model){
+
+    const container =
+    document.getElementById("options");
+
+    container.innerHTML = "";
+
+
+    let colours = [];
+
+
+    /* IPAD */
+
+    if(currentCategory === "iPad Touch"){
+
+        colours =
+        ipadTouchColours[model] ||
+        ["Black","White"];
+
+    }
+
+
+    /* IPHONE */
+
+    else{
+
+        colours =
+        iphoneColours[model] ||
+        [];
+
+    }
+
+
+    colours.forEach(colour => {
+
+        const div =
+        document.createElement("div");
+
+        div.className = "option";
+
+
+        div.innerHTML = `
+
+            ${colour}
+
+            <small>
+            ${model}
+            </small>
+
+        `;
+
+
+        div.onclick = function(){
+
+            showProducts(
+
+                products.filter(product =>
+
+                    product.category ===
+                    currentCategory &&
+
+                    product.model ===
+                    model &&
+
+                    product.colour ===
+                    colour
+
+                )
+
+            );
+
+        };
+
+
+        container.appendChild(div);
+
+    });
+
+}
+
+
+/* =========================================================
+   DISPLAY PRODUCTS
+   ========================================================= */
+
+function showProducts(list){
+
+    const container =
+    document.getElementById("products");
+
+    container.innerHTML = "";
+
+
+    if(!list.length){
+
+        container.innerHTML = `
+
+            <p>
+            No products found.
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    list.forEach(product => {
+
+
+        const imageHTML =
+        product.image
+
+        ?
+
+        `<img
+        src="${product.image}"
+        style="
+        width:100%;
+        height:100%;
+        object-fit:contain;
+        ">`
+
+        :
+
+        `📦`;
+
+
+        container.innerHTML += `
+
+        <div class="product">
+
+            <div class="product-image">
+
+                ${imageHTML}
+
+            </div>
+
+
+            <div class="product-info">
+
+                <h3>
+                ${product.name}
+                </h3>
+
+
+                <div class="product-details">
+
+                    Model:
+                    ${product.model}
+
+                    <br>
+
+
+                    ${
+                        product.quality
+                        ?
+                        `Quality:
+                        ${product.quality}
+                        <br>`
+                        :
+                        ""
+                    }
+
+
+                    ${
+                        product.colour
+                        ?
+                        `Colour:
+                        ${product.colour}
+                        <br>`
+                        :
+                        ""
+                    }
+
+
+                    ${product.description}
+
+                </div>
+
+
+                <div class="price">
+
+                    ₹${product.price.toLocaleString("en-IN")}
+
+                </div>
+
+
+                <div class="stock">
+
+                    ${
+                        product.stock > 0
+                        ?
+                        `🟢 ${product.stock} in stock`
+                        :
+                        `🔴 Out of stock`
+                    }
+
+                </div>
+
+
+                <button
+
+                class="add-button"
+
+                onclick="
+                addToCart(${product.id})
+                "
+
+                ${product.stock <= 0 ? "disabled" : ""}
+
+                >
+
+                    ${
+                        product.stock > 0
+                        ?
+                        "Add to Cart"
+                        :
+                        "Out of Stock"
+                    }
+
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+function searchProducts(){
+
+    const query =
+    document.getElementById("search")
+    .value
+    .toLowerCase()
+    .trim();
+
+
+    if(!query){
+
+        return;
+
+    }
+
+
+    document.getElementById("catalogue")
+    .style.display = "block";
+
+
+    document.getElementById("categoryTitle")
+    .innerText =
+    "Search Results";
+
+
+    document.getElementById("options")
+    .innerHTML = "";
+
+
+    const results =
+    products.filter(product => {
+
+        const text =
+
+        product.name + " " +
+        product.model + " " +
+        product.category + " " +
+        product.quality + " " +
+        product.colour;
+
+        return text
+        .toLowerCase()
+        .includes(query);
+
+    });
+
+
+    showProducts(results);
+
+}
+
+
+/* =========================================================
+   CART
+   ========================================================= */
+
+let cart = [];
+
+
+/* ADD TO CART */
+
+function addToCart(id){
+
+    const product =
+    products.find(
+        item => item.id === id
+    );
+
+
+    if(!product){
+
+        return;
+
+    }
+
+
+    const existing =
+    cart.find(
+        item => item.id === id
+    );
+
+
+    if(existing){
+
+        if(
+            existing.quantity <
+            product.stock
+        ){
+
+            existing.quantity++;
+
+        }
+
+    }
+
+    else{
+
+        cart.push({
+
+            id:id,
+
+            quantity:1
+
+        });
+
+    }
+
+
+    updateCart();
+
+    openCart();
+
+}
+
+
+/* =========================================================
+   UPDATE CART
+   ========================================================= */
+
+function updateCart(){
+
+    const cartCount =
+    document.getElementById("cartCount");
+
+
+    cartCount.innerText =
+
+    cart.reduce(
+
+        (total,item) =>
+        total + item.quantity,
+
+        0
+
+    );
+
+
+    const container =
+    document.getElementById("cartItems");
+
+    container.innerHTML = "";
+
+
+    if(!cart.length){
+
+        container.innerHTML = `
+
+            <p>
+            Your cart is empty.
+            </p>
+
+        `;
+
+
+        document.getElementById("cartTotal")
+        .innerText = "0";
+
+        return;
+
+    }
+
+
+    let total = 0;
+
+
+    cart.forEach(
+    (item,index) => {
+
+
+        const product =
+        products.find(
+            product =>
+            product.id === item.id
+        );
+
+
+        if(!product){
+
+            return;
+
+        }
+
+
+        total +=
+
+        product.price *
+        item.quantity;
+
+
+        container.innerHTML += `
+
+        <div class="cart-item">
+
+            <b>
+            ${product.name}
+            </b>
+
+            ₹${product.price.toLocaleString("en-IN")}
+
+
+            <div class="quantity">
+
+                <button
+                onclick="
+                changeQuantity(${index},-1)
+                ">
+                −
+                </button>
+
+
+                <span>
+                ${item.quantity}
+                </span>
+
+
+                <button
+                onclick="
+                changeQuantity(${index},1)
+                ">
+                +
+                </button>
+
+            </div>
+
+
+            <button
+            class="remove"
+            onclick="
+            removeItem(${index})
+            ">
+
+            Remove
+
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+
+    document.getElementById("cartTotal")
+    .innerText =
+    total.toLocaleString("en-IN");
+
+}
+
+
+/* =========================================================
+   CHANGE QUANTITY
+   ========================================================= */
+
+function changeQuantity(index,change){
+
+    const item =
+    cart[index];
+
+
+    const product =
+    products.find(
+        p => p.id === item.id
+    );
+
+
+    if(!product){
+
+        return;
+
+    }
+
+
+    item.quantity += change;
+
+
+    if(item.quantity <= 0){
+
+        cart.splice(index,1);
+
+    }
+
+
+    if(
+        item.quantity >
+        product.stock
+    ){
+
+        item.quantity =
+        product.stock;
+
+    }
+
+
+    updateCart();
+
+}
+
+
+/* =========================================================
+   REMOVE CART ITEM
+   ========================================================= */
+
+function removeItem(index){
+
+    cart.splice(index,1);
+
+    updateCart();
+
+}
+
+
+/* =========================================================
+   OPEN CART
+   ========================================================= */
+
+function openCart(){
+
+    document.getElementById("cart")
+    .classList.add("active");
+
+
+    document.getElementById("overlay")
+    .classList.add("active");
+
+}
+
+
+/* =========================================================
+   CLOSE CART
+   ========================================================= */
+
+function closeCart(){
+
+    document.getElementById("cart")
+    .classList.remove("active");
+
+
+    document.getElementById("overlay")
+    .classList.remove("active");
+
+}
+
+
+/* =========================================================
+   CHECKOUT
+   ========================================================= */
+
+function openCheckout(){
+
+    if(!cart.length){
+
+        alert(
+        "Your cart is empty."
+        );
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "checkoutModal"
+    )
+    .classList.add("active");
+
+}
+
+
+function closeCheckout(){
+
+    document.getElementById(
+        "checkoutModal"
+    )
+    .classList.remove("active");
+
+}
+
+
+/* =========================================================
+   PLACE ORDER
+   ========================================================= */
+
+function placeOrder(){
+
+    const fields = [
+
+        "customerName",
+        "customerPhone",
+        "customerAddress",
+        "customerCity",
+        "customerState",
+        "customerPin"
+
+    ];
+
+
+    for(
+        const id of fields
+    ){
+
+        const field =
+        document.getElementById(id);
+
+
+        if(
+            !field.value.trim()
+        ){
+
+            alert(
+            "Please fill all delivery details."
+            );
+
+            field.focus();
+
+            return;
+
+        }
+
+    }
+
+
+    let message =
+    "Hello I SPARES,%0A%0A";
+
+    message +=
+    "*NEW ORDER*%0A%0A";
+
+
+    let total = 0;
+
+
+    cart.forEach(
+    (item,index) => {
+
+        const product =
+        products.find(
+            p => p.id === item.id
+        );
+
+
+        const itemTotal =
+        product.price *
+        item.quantity;
+
+
+        total += itemTotal;
+
+
+        message +=
+
+        `${index + 1}. ${product.name}%0A` +
+
+        `Quantity: ${item.quantity}%0A` +
+
+        `Price: ₹${product.price}%0A%0A`;
+
+    });
+
+
+    message +=
+
+    `*TOTAL: ₹${total}*%0A%0A`;
+
+
+    message +=
+    "*CUSTOMER DETAILS*%0A";
+
+
+    message +=
+    `Name: ${
+        document.getElementById(
+        "customerName"
+        ).value
+    }%0A`;
+
+
+    message +=
+    `Phone: ${
+        document.getElementById(
+        "customerPhone"
+        ).value
+    }%0A`;
+
+
+    message +=
+    `Address: ${
+        document.getElementById(
+        "customerAddress"
+        ).value
+    }%0A`;
+
+
+    message +=
+    `City: ${
+        document.getElementById(
+        "customerCity"
+        ).value
+    }%0A`;
+
+
+    message +=
+    `State: ${
+        document.getElementById(
+        "customerState"
+        ).value
+    }%0A`;
+
+
+    message +=
+    `PIN: ${
+        document.getElementById(
+        "customerPin"
+        ).value
+    }%0A`;
+
+
+    message +=
+    `Payment: ${
+        document.getElementById(
+        "payment"
+        ).value
+    }`;
+
+
+    /*
+       IMPORTANT:
+       Replace this number with
+       your I SPARES WhatsApp number.
+
+       Example:
+       const whatsappNumber = "919946287259";
+    */
+
+    const whatsappNumber =
+    "91XXXXXXXXXX";
+
+
+    window.open(
+
+        "https://wa.me/" +
+        whatsappNumber +
+        "?text=" +
+        message,
+
+        "_blank"
+
+    );
+
+}
+
+
+/* =========================================================
+   BACK TO CATEGORIES
+   ========================================================= */
+
+function showCategories(){
+
+    document.getElementById(
+        "catalogue"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "categories"
+    ).scrollIntoView({
+
+        behavior:"smooth"
+
+    });
+
+}
+
+
+/* =========================================================
+   START WEBSITE
+   ========================================================= */
+
+updateCart();
+  </script>
+</body>
+</html>
